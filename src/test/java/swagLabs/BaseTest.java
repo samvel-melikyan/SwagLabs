@@ -1,34 +1,3 @@
-package swagLabs;
-
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-
-import java.time.Duration;
-
-import static swaglabs.util.BaseDriver.getDriver;
-import static swaglabs.util.BaseDriver.setDriver;
-
-public class BaseTest{
-    protected WebDriver driver;
-
-
-    @BeforeMethod
-    public void setUp() {
-
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        driver = getDriver();
-//        getDriver().get("https://www.saucedemo.com/");
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        if(driver != null) {
-            driver.quit();
-            setDriver(null);
-        }
-    }
-
-
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:9539f6541f3dbb4c69fa7776efde6a391e688cd059767759f7c208194f57b372
+size 830
