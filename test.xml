@@ -4,10 +4,10 @@
 
     <test name="Test" preserve-order="true" >
 
-        <parameter name="browser" value="chrome" />
+        <parameter name="browser" value="gecko" />
         <parameter name="Port" value="9001" />
         <classes>
-            <class name="swagLabs.TestCS"/>
+            <class name="swagLabs.AllItemTest"/>
         </classes>
     </test>
 </suite>
