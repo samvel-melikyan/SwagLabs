@@ -7,7 +7,18 @@
         <parameter name="browser" value="gecko" />
         <parameter name="Port" value="9001" />
         <classes>
+            <class name="swagLabs.AddToCartTest"/>
             <class name="swagLabs.AllItemTest"/>
+            <class name="swagLabs.CheckoutTest"/>
+            <class name="swagLabs.CompleteTest"/>
+            <class name="swagLabs.FilterTest"/>
+            <class name="swagLabs.FooterTest"/>
+            <class name="swagLabs.HomeTest"/>
+            <class name="swagLabs.LoginTest"/>
+            <class name="swagLabs.LogoutTest"/>
+            <class name="swagLabs.MenuBarTest"/>
+            <class name="swagLabs.OverviewTest"/>
+            <class name="swagLabs.ProductDisplayTest"/>
         </classes>
     </test>
 </suite>
