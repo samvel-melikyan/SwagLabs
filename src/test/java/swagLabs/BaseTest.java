@@ -1,3 +1,58 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:379c6075f042af366b058ee20f86e3432899a572ebe87775b7b8398716bd3dba
-size 1828
+package swagLabs;
+
+import com.swaglabs.util.ExcelReport;
+import com.swaglabs.util.TakeScreenshot;
+import io.qameta.allure.model.TestResult;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
+import org.testng.Reporter;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+import java.io.File;
+import java.io.IOException;
+import java.time.Duration;
+import java.util.Arrays;
+
+import static com.swaglabs.util.BaseDriver.getDriver;
+import static com.swaglabs.util.BaseDriver.setDriver;
+
+public class BaseTest{
+    protected Boolean condition;
+    protected String errMessage;
+    protected WebDriver driver;
+    protected int index;
+    private ITestResult testResult;
+
+
+
+
+    @BeforeMethod
+    public void setUp() {
+
+        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
+        driver = getDriver();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    }
+
+    @AfterMethod
+    public void tearDown() throws IOException {
+        if(driver != null) {
+            driver.quit();
+            setDriver(null);
+        }
+    }
+
+    @AfterMethod
+    public void takeScreenShotOnFailure(ITestResult testResult) throws IOException {
+        if (testResult.getStatus() == ITestResult.FAILURE) {
+            System.out.println("> Screenshot has captured while failure.");
+            File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("src/main/java/com/swaglabs/util/failureScreenshots" + "/photo" + new TakeScreenshot().failureNumber() + ".png"));
+        }
+    }
+
+}

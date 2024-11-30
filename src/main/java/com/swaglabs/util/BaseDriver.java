@@ -1,3 +1,36 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:750f2367363127d91c5eaf8195bef61bd4d68eb36a99176376581ecdeb09a3b4
-size 744
+package com.swaglabs.util;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+
+public class BaseDriver {
+    private static WebDriver driver = null;
+
+    private static FirefoxOptions options;
+
+
+
+
+
+
+    public static void setDriver(WebDriver driver){
+        BaseDriver.driver = driver;
+    }
+
+    public static WebDriver getDriver(){
+        if (driver == null) {
+            driver = new FirefoxDriver();
+        }
+        return driver;
+    }
+
+    private static FirefoxOptions setOptions(){
+
+        options = new FirefoxOptions();
+        options.addArguments("start-maximized");
+
+        return options;
+    }
+
+}

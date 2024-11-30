@@ -1,3 +1,34 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e00fdb933b80bea3aa9231de8ea3d0ea2f62793e0673bdb02e18ab7254ed9ca1
-size 714
+package com.swaglabs.pages;
+
+import org.openqa.selenium.support.PageFactory;
+
+import static com.swaglabs.util.BaseDriver.getDriver;
+
+public class About extends BasePage {
+
+
+
+
+    public About() {
+        super();
+        this.load();
+        PageFactory.initElements(driver, this);
+    }
+
+    public String getURL(){
+        return driver.getCurrentUrl();
+    }
+
+    @Override
+    public void load() {
+        getDriver().get("https://saucelabs.com/");
+    }
+
+    @Override
+    protected void isLoaded() throws Error {
+        super.isLoaded();
+//        if(driver.getCurrentUrl().contains("https://www.saucedemo.com/"))
+//            return true;
+//        return false;
+    }
+}

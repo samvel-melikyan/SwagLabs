@@ -1,5 +1,5 @@
 *.psd filter=lfs diff=lfs merge=lfs -text
-*.java filter=lfs diff=lfs merge=lfs -text
+#*.java filter=lfs diff=lfs merge=lfs -text
 *                 text=auto
 # enforce content type "text" to fix mixed line-endings in the repo
 *.conf            text
@@ -21,9 +21,9 @@
 *.phtml           text
 *.properties      text
 *.sh              text
-*.sql             text
+#*.sql             text
 *.txt             text
-*.xml             text
+#*.xml             text
 *.yml             text
 
 
