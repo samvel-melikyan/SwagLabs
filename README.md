@@ -4,6 +4,8 @@
 
 This repository contains the test suite for SwagLabs, a sample e-commerce web application. The tests are designed to ensure the functionality and reliability of the application.
 
+# Video example 
+https://www.youtube.com/watch?v=oyxuW7lfrh0
 ## Table of Contents
 
 - [Installation](#installation)
