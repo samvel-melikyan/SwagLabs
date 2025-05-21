@@ -10,15 +10,11 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>18</java.version>
-        <aspectj.version>1.9.20</aspectj.version>
-        <allure.version>2.24.0</allure.version>
-        <maven.compiler.source>18</maven.compiler.source>
-        <maven.compiler.target>18</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <allure.version>2.17.3</allure.version>
+        <aspectj.version>1.9.5</aspectj.version>
     </properties>
-
-    <name>SwagLabs Automation</name>
-    <description>Automation project with Selenium, TestNG and Allure</description>
 
     <build>
         <plugins>
@@ -33,11 +29,11 @@
                 </configuration>
             </plugin>
 
-            <!-- Surefire Plugin for TestNG -->
+            <!-- Surefire Plugin to run tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
+                <version>3.0.0-M7</version>
                 <configuration>
                     <suiteXmlFiles>
                         <suiteXmlFile>test.xml</suiteXmlFile>
@@ -45,9 +41,6 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
-                    <systemPropertyVariables>
-                        <allure.results.directory>allure-results</allure.results.directory>
-                    </systemPropertyVariables>
                 </configuration>
             </plugin>
 
@@ -55,7 +48,7 @@
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.11.2</version>
+                <version>2.10.0</version>
             </plugin>
         </plugins>
     </build>
@@ -65,34 +58,48 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.20.0</version>
+            <version>4.1.2</version>
         </dependency>
 
         <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.9.0</version>
+            <version>7.6.0</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- Apache POI -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>5.2.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>5.2.5</version>
-        </dependency>
-
-        <!-- Allure TestNG Integration -->
+        <!-- Allure TestNG -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
+        </dependency>
+
+        <!-- Apache POI for Excel -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.17</version>
+        </dependency>
+
+        <!-- AShot for screenshots -->
+        <dependency>
+            <groupId>ru.yandex.qatools.ashot</groupId>
+            <artifactId>ashot</artifactId>
+            <version>1.5.4</version>
+        </dependency>
+
+        <!-- Gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10.1</version>
         </dependency>
 
         <!-- AspectJ for Allure -->
@@ -100,20 +107,6 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectj.version}</version>
-        </dependency>
-
-        <!-- AShot (Screenshot Tool) -->
-        <dependency>
-            <groupId>ru.yandex.qatools.ashot</groupId>
-            <artifactId>ashot</artifactId>
-            <version>1.5.4</version>
-        </dependency>
-
-        <!-- Gson for JSON -->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.10.1</version>
         </dependency>
     </dependencies>
 </project>
