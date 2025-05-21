@@ -36,13 +36,18 @@ jobs:
       - name: Build project without tests
         run: mvn clean install -DskipTests
 
-      - name: Run all tests
-        if: ${{ github.event.inputs.test_suite == 'all' }}
-        run: mvn test
+      - name: Run tests
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            if [[ "${{ github.event.inputs.test_suite }}" == "smoke" ]]; then
+              mvn test -Dgroups=smoke
+            else
+              mvn test
+            fi
+          else
+            mvn test
+          fi
 
-      - name: Run smoke tests
-        if: ${{ github.event.inputs.test_suite == 'smoke' }}
-        run: mvn test -Dgroups=smoke
 
       - name: Upload test reports
         if: ${{ !cancelled() }}
