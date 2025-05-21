@@ -2,9 +2,9 @@ name: Java CI
 
 on:
   push:
-    branches: [ swaglabs ]
+    branches: [ swag_labs ]
   pull_request:
-    branches: [ swaglabs ]
+    branches: [ swag_labs ]
 
 jobs:
   build:
