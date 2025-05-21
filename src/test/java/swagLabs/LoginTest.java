@@ -20,7 +20,7 @@ public class LoginTest extends BaseTest {
 
     private final ExcelReport EXCEL =  new ExcelReport("Login");
 
-    private String username = "standard_user";  // standard_user
+    private String username = "problem_user";  // standard_user
     private String password = "secret_sauce";
 
     @Test
