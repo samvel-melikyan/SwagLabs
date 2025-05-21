@@ -1,0 +1,53 @@
+name: Selenium Tests
+
+on:
+  push:
+    branches: [swag_labs]
+  pull_request:
+    branches: [swag_labs]
+  workflow_dispatch:
+    inputs:
+      test_suite:
+        description: 'Choose which test suite to run'
+        type: choice
+        options:
+          - all
+          - smoke
+        default: all
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install Maven
+        run: sudo apt-get update && sudo apt-get install -y maven
+
+      - name: Build project without tests
+        run: mvn clean install -DskipTests
+
+      - name: Run all tests
+        if: ${{ github.event.inputs.test_suite == 'all' }}
+        run: mvn test
+
+      - name: Run smoke tests
+        if: ${{ github.event.inputs.test_suite == 'smoke' }}
+        run: mvn test -Dgroups=smoke
+
+      - name: Upload test reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: target/surefire-reports/
+          retention-days: 30
