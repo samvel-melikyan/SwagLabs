@@ -62,12 +62,12 @@
         </dependency>
 
         <!-- TestNG -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.6.0</version>
-            <scope>test</scope>
-        </dependency>
+         <dependency>
+             <groupId>org.testng</groupId>
+             <artifactId>testng</artifactId>
+             <version>7.7.0</version> <!-- Use the latest stable version -->
+             <scope>test</scope>
+         </dependency>
 
         <!-- Allure TestNG -->
         <dependency>
