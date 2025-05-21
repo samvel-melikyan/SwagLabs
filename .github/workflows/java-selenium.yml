@@ -5,6 +5,15 @@ on:
     branches: [swag_labs]
   pull_request:
     branches: [swag_labs]
+  workflow_dispatch:
+    inputs:
+      test_suite:
+        description: 'Choose which test suite to run'
+        type: choice
+        options:
+          - all
+          - smoke
+        default: all
 
 jobs:
   test:
