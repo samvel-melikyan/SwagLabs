@@ -58,22 +58,6 @@ public class Home extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-//    public List<HashMap<String, WebElement>> products(){
-//        HashMap<String, WebElement> item;
-//        List<HashMap<String, WebElement>> product = new ArrayList<>();
-//        int i = 0;
-//        while (i < getInventoryList().size()){
-//            item = new HashMap<>();
-//            item.put("name", inventoryNameList.get(i));
-//            item.put("price", inventoryPriceList.get(i));
-//            item.put("addToCart", addToCartList.get(i));
-////            item.put("remove", removeBtnList.get(i));
-//            item.put("image", imagelist.get(i));
-//            product.add(item);
-//            i++;
-//        }
-//        return product;
-//    }
 
     public String getDescriptionsByIndex(int index){
         return getText(descriptionList.get(index));

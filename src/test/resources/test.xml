@@ -1,0 +1,24 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Swag Labs Test Suite" verbose="2" parallel="classes" thread-count="1" annotations="JDK">
+
+    <parameter name="browser" value="gecko"/>
+    <parameter name="Port" value="9001"/>
+
+    <test name="Functional Tests" preserve-order="true">
+        <classes>
+            <class name="swagLabs.AddToCartTest"/>
+            <class name="swagLabs.AllItemTest"/>
+            <class name="swagLabs.CheckoutTest"/>
+            <class name="swagLabs.CompleteTest"/>
+            <class name="swagLabs.FilterTest"/>
+            <class name="swagLabs.FooterTest"/>
+            <class name="swagLabs.HomeTest"/>
+            <class name="swagLabs.LoginTest"/>
+            <class name="swagLabs.LogoutTest"/>
+            <class name="swagLabs.MenuBarTest"/>
+            <class name="swagLabs.OverviewTest"/>
+            <class name="swagLabs.ProductDisplayTest"/>
+        </classes>
+    </test>
+
+</suite>

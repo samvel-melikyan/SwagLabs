@@ -1,0 +1,1 @@
+{"uuid":"df1c818d-767e-44fe-8035-a9d70768c8e4","name":"swagLabs.BaseTest.tearDown","children":["66b377ba-b8c1-4d69-a45a-06ab58813692"],"description":"","befores":[],"afters":[{"name":"tearDown","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1747905345293,"stop":1747905346625}],"start":1747905345293,"stop":1747905346625}

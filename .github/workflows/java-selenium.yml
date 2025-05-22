@@ -48,7 +48,6 @@ jobs:
             mvn test
           fi
 
-
       - name: Upload test reports
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
