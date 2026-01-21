@@ -11,10 +11,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 
 public class TakeScreenshot {
     private WebDriver driver;
-    private String directoryPath = "src/main/java/com/swaglabs/util/screenshots";
+    private String directoryPath = "com/swaglabs/util/failureScreenshot";
     private String name = "/photo" + number() + ".png";
     private String formatName = "png";
 
@@ -69,10 +70,10 @@ public class TakeScreenshot {
     }
 
     public int number() {
-        return new File(directoryPath).listFiles().length;
+        return Objects.requireNonNull(new File(directoryPath).listFiles()).length;
     }
     public int failureNumber() {
-        return new File("src/main/java/com/swaglabs/util/failureScreenshots").listFiles().length;
+        return Objects.requireNonNull(new File("com/swaglabs/util/failureScreenshot").listFiles()).length;
     }
 
 

@@ -176,6 +176,15 @@ public class Home extends BasePage {
         }
     }
 
+    public Boolean isMenuBtnClickable(){
+        try {
+            WaitHelpers.toBeClickable(getMenuBtn());
+            return true;
+        }catch (TimeoutException e){
+            return false;
+        }
+    }
+
     public Boolean isAllItemBtnClickable(){
         try {
             WaitHelpers.toBeClickable(getAllItem());

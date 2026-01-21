@@ -2,6 +2,7 @@ package swagLabs;
 
 import com.swaglabs.pages.Home;
 import com.swaglabs.pages.Login;
+import com.swaglabs.pages.Product;
 import com.swaglabs.pages.shoppingCart.ChackoutOverview;
 import com.swaglabs.pages.shoppingCart.Checkout;
 import com.swaglabs.pages.shoppingCart.CheckoutComplete;
@@ -14,10 +15,12 @@ public class AllItemTest extends BaseTest{
 
     private final ExcelReport EXCEL = new ExcelReport("All Items");
     private String errMessage =  "~The products page did not opened.";
+
+
     @Test
     public void fromHomePage() {
         Home home = new Login(driver).logIn();
-        home.allItemMenu();
+        home.ClickAllItemFromMenu();
         EXCEL.report(
                 home.getTitle().equals( "Products"),1, errMessage,
                 "Opened page title is: " + home.getTitle());
@@ -33,7 +36,7 @@ public class AllItemTest extends BaseTest{
     public void fromYourCartPage(){
         Home home = new Login(driver).logIn();
         YourCart cart = home.shoppingCart();
-        cart.allItemMenu();
+        cart.ClickAllItemFromMenu();
         EXCEL.report( home.getTitle().equals( "Products"),2, errMessage,
                 "Opened page title is: " + home.getTitle());
         Assert.assertEquals(
@@ -48,7 +51,7 @@ public class AllItemTest extends BaseTest{
         Home home = new Login(driver).logIn();
         YourCart cart = home.shoppingCart();
         Checkout checkout = cart.clickCheckoutBtn();
-        checkout.allItemMenu();
+        checkout.ClickAllItemFromMenu();
         EXCEL.report( home.getTitle().equals( "Products"),3, errMessage,
                 "Opened page title is: " + home.getTitle());
         Assert.assertEquals(
@@ -64,7 +67,7 @@ public class AllItemTest extends BaseTest{
         YourCart cart = home.shoppingCart();
         Checkout checkout = cart.clickCheckoutBtn();
         ChackoutOverview overview = checkout.continueBtn();
-        overview.allItemMenu();
+        overview.ClickAllItemFromMenu();
         EXCEL.report( home.getTitle().equals( "Products"),4, errMessage,
                 "Opened page title is: " + home.getTitle());
         Assert.assertEquals(
@@ -81,7 +84,7 @@ public class AllItemTest extends BaseTest{
         Checkout checkout = cart.clickCheckoutBtn();
         ChackoutOverview overview = checkout.continueBtn();
         CheckoutComplete complete = overview.finishBtn();
-        complete.allItemMenu();
+        complete.ClickAllItemFromMenu();
         EXCEL.report( home.getTitle().equals( "Products"),5, errMessage,
                 "Opened page title is: " + home.getTitle());
         Assert.assertEquals(
@@ -91,17 +94,18 @@ public class AllItemTest extends BaseTest{
         );
     }
     @Test
-    public void menuBarClosureFromHomePage() {
+    public void menuBarClosureFromProductPage() {
         errMessage = "Product page has successfully opened\n~Menu bar should be closed, \"All Item\" button shouldn't be clickable: ";
         Home home = new Login(driver).logIn();
-        home.allItemMenu();
-        EXCEL.report(!home.isAllItemBtnClickable(), 6, errMessage,
-                "The \"All Item\" button from menu bar is clickable: " + home.isAllItemBtnClickable());
-        Assert.assertFalse(
-                home.isAllItemBtnClickable(),
+        Product product = home.clickItemByIndex(3);
+        product.menuBtn();
+        home = product.allItems_menu();
+        EXCEL.report(home.isMenuBtnClickable(), 6, errMessage,
+                "Menu bar closed after navigating to the home page: " + home.isMenuBtnClickable());
+        Assert.assertTrue(
+                home.isMenuBtnClickable(),
                 errMessage
         );
-
     }
 
     @Test
@@ -110,7 +114,7 @@ public class AllItemTest extends BaseTest{
         Home home = new Login(driver).logIn();
         YourCart cart = home.shoppingCart();
         Checkout checkout = cart.clickCheckoutBtn();
-        checkout.allItemMenu();
+        checkout.ClickAllItemFromMenu();
         EXCEL.report(!home.isAllItemBtnClickable(),7, errMessage,
                 "The \"All Item\" button from menu bar is clickable: " + home.isAllItemBtnClickable());
         Assert.assertFalse(

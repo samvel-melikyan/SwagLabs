@@ -21,13 +21,13 @@ public class Product extends BasePage{
     @FindBy(className = "inventory_details_price")
     private WebElement price;
 
-    @FindBy(id = "add-to-cart-sauce-labs-backpack")
+    @FindBy(id = "add-to-cart")
     private WebElement addToCart;
 
     @FindBy(className = "inventory_details_img")
     private WebElement image;
 
-    @FindBy(id = "remove-sauce-labs-backpack")
+    @FindBy(id = "remove")
     private WebElement removeBtn;
 
     public Product(){

@@ -4,9 +4,8 @@ import com.swaglabs.util.ExcelReport;
 import com.swaglabs.util.TakeScreenshot;
 import io.qameta.allure.model.TestResult;
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
@@ -28,7 +27,12 @@ public class BaseTest{
     private ITestResult testResult;
 
 
-
+    public void copyPast(WebElement elementBeFilled){
+        Actions action = new Actions(driver);
+        action.keyDown(Keys.CONTROL).sendKeys("c").perform();
+        action.click(elementBeFilled);
+        action.keyDown(Keys.CONTROL).sendKeys("v").perform();
+    }
 
     @BeforeMethod
     public void setUp() {
@@ -51,7 +55,7 @@ public class BaseTest{
         if (testResult.getStatus() == ITestResult.FAILURE) {
             System.out.println("> Screenshot has captured while failure.");
             File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-            FileUtils.copyFile(scrFile, new File("src/main/java/com/swaglabs/util/failureScreenshots" + "/photo" + new TakeScreenshot().failureNumber() + ".png"));
+            FileUtils.copyFile(scrFile, new File("com/swaglabs/util/failureScreenshot" + "/photo" + new TakeScreenshot().failureNumber() + ".png"));
         }
     }
 

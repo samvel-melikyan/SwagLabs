@@ -2,10 +2,8 @@ package com.swaglabs.pages;
 
 
 import com.swaglabs.pages.shoppingCart.YourCart;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
@@ -80,7 +78,7 @@ public abstract class BasePage  extends LoadableComponent<BasePage> {
         click(allItems_menu);
         return new Home();
     }
-    public void allItemMenu(){
+    public void ClickAllItemFromMenu(){
         menuBtn();
         allItems_menu();
     }
@@ -106,12 +104,7 @@ public abstract class BasePage  extends LoadableComponent<BasePage> {
         return false;
     }
 
-    public void copyPast(WebElement elementBeFilled){
-        Actions action = new Actions(driver);
-        action.keyDown(Keys.CONTROL).sendKeys("c").perform();
-        action.click(elementBeFilled);
-        action.keyDown(Keys.CONTROL).sendKeys("v").perform();
-    }
+
 
     public WebElement getCartImage(){
         return cartImage;
