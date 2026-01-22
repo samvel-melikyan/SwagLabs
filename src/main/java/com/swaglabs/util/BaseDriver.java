@@ -20,7 +20,7 @@ public class BaseDriver {
 
     public static WebDriver getDriver(){
         if (driver == null) {
-            driver = new FirefoxDriver();
+            driver = new FirefoxDriver(setOptions());
         }
         return driver;
     }
@@ -29,6 +29,7 @@ public class BaseDriver {
 
         options = new FirefoxOptions();
         options.addArguments("start-maximized");
+        options.addArguments("-headless");
 
         return options;
     }

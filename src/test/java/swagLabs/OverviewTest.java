@@ -70,20 +70,22 @@ public class OverviewTest extends BaseTest{
         Assert.assertTrue(condition, errMessage);
     }
 
-    @Test
-    public void totalPrice() {
-        errMessage = "~The summary of tax and product's prices should be equal to total price.";
-        Home home = new Login(driver).logIn();
-        home.clickAddToCartBtn(0);
-        YourCart cart = home.shoppingCart();
-        Checkout checkout = cart.clickCheckoutBtn();
-        ChackoutOverview overview = checkout.continueBtn();
-        condition = overview.calculateThePrice();
-        EXCEL.report(condition, 5,
-                errMessage, overview.itemTotalPrice()+" + " + overview.taxTotalPrice()
-                + " = " + (overview.itemTotalPrice() + overview.taxTotalPrice()));
-        Assert.assertTrue(condition, errMessage);
-    }
+@Test
+        public void totalPrice() {
+            errMessage = "~The summary of tax and product's prices should be equal to total price.";
+            Home home = new Login(driver).logIn();
+            home.clickAddToCartBtn(0);
+            YourCart cart = home.shoppingCart();
+            Checkout checkout = cart.clickCheckoutBtn();
+            ChackoutOverview overview = checkout.continueBtn();
+            Float calculatedTotalPrice = overview.calculateThePrice();
+            Float displayedTotalPrice = overview.totalPrice();
+            EXCEL.report(condition, 5,
+                    errMessage, overview.itemTotalPrice()+" + " + overview.taxTotalPrice()
+                    + " = " + (overview.itemTotalPrice() + overview.taxTotalPrice()));
+            Assert.assertEquals(displayedTotalPrice, calculatedTotalPrice, errMessage);
+        }
+
     @Test
     public void finish() {
         errMessage = "~The 'Checkout: Complete' page should be opened.";
@@ -99,22 +101,22 @@ public class OverviewTest extends BaseTest{
         Assert.assertTrue(condition, errMessage);
     }
 
-
     @Test
     public void totalPriceMultipleItems() {
         errMessage = "~The summary of tax and product's prices should be equal to total price.";
         Home home = new Login(driver).logIn();
-        for (int i = 0; i < home.getAddToCartList().size(); i++){
+        for (int i = 0; i < home.getAddToCartList().size(); i++) {
             home.clickAddToCartBtn(i);
         }
         YourCart cart = home.shoppingCart();
         Checkout checkout = cart.clickCheckoutBtn();
         ChackoutOverview overview = checkout.continueBtn();
-        condition = overview.calculateThePrice() && overview.compereSumWithTotal();
+        Float calculatedTotalPrice = overview.calculateThePrice();
+        Float displayedTotalPrice = overview.totalPrice();
         EXCEL.report(condition, 7,
-                errMessage, overview.itemTotalPrice()+" + " + overview.taxTotalPrice()
+                errMessage, overview.itemTotalPrice() + " + " + overview.taxTotalPrice()
                         + " = " + (overview.itemTotalPrice() + overview.taxTotalPrice()));
-        Assert.assertTrue(condition, errMessage);
+        Assert.assertEquals(displayedTotalPrice, calculatedTotalPrice, errMessage);
     }
 
     @Test
@@ -144,7 +146,7 @@ public class OverviewTest extends BaseTest{
         YourCart cart = home.shoppingCart();
         Checkout checkout = cart.clickCheckoutBtn();
         ChackoutOverview overview = checkout.continueBtn();
-        condition = overview.compereSumWithTotal();
+        condition = overview.compareSumWithTotal();
         EXCEL.report(condition, 9,
                 errMessage, "Products price summary: " + overview.getItemsPriceSummary() +
                         "\nTotal item price: " +overview.itemTotalPrice());

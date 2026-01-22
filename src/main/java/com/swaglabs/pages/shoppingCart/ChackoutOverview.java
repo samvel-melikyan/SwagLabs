@@ -3,13 +3,10 @@ package com.swaglabs.pages.shoppingCart;
 import com.swaglabs.pages.BasePage;
 import com.swaglabs.pages.Home;
 import com.swaglabs.pages.Product;
-import net.jodah.failsafe.internal.HalfOpenState;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static com.swaglabs.util.BaseDriver.getDriver;
@@ -29,7 +26,7 @@ public class ChackoutOverview extends BasePage {
     private WebElement itemTotalPrice;
     @FindBy(className = "summary_tax_label")
     private WebElement taxTotalPrice;
-    @FindBy(css = ".summary_info_label.summary_total_label")
+    @FindBy(className = "summary_total_label")
     private WebElement totalPrice;
     @FindBy(className = "inventory_item_name")
     private List<WebElement> itemName;
@@ -62,11 +59,11 @@ public class ChackoutOverview extends BasePage {
         click(cancelBtn);
         return new Home();
     }
-    public Boolean compereSumWithTotal(){
+    public Boolean compareSumWithTotal(){
         sum = 0;
         for(WebElement e : itemPriceList){
             String s = getText(e);
-            sum += Float.parseFloat(s.substring(1, s.length()));
+            sum += Float.parseFloat(s.substring(1));
         }
         return sum == itemTotalPrice();
     }
@@ -77,13 +74,13 @@ public class ChackoutOverview extends BasePage {
 
     public float itemTotalPrice(){
         String s = getText(itemTotalPrice);
-        s = s.substring(s.indexOf("$")+1, s.length());
+        s = s.substring(s.indexOf("$")+1);
         return Float.parseFloat(s);
     }
 
     public float taxTotalPrice(){
         String s = getText(taxTotalPrice);
-        s = s.substring(s.indexOf("$")+1, s.length());
+        s = s.substring(s.indexOf("$")+1);
         return Float.parseFloat(s);
     }
     public float totalPrice(){
@@ -91,8 +88,8 @@ public class ChackoutOverview extends BasePage {
         s = s.substring(s.indexOf("$")+1, s.length());
         return Float.parseFloat(s);
     }
-    public Boolean calculateThePrice(){
-        return ((itemTotalPrice() + taxTotalPrice()) == totalPrice()) ? true : false;
+    public Float calculateThePrice(){
+        return itemTotalPrice() + taxTotalPrice();
     }
     @Override
     public  void load() {

@@ -21,7 +21,7 @@ public class FooterTest extends BaseTest{
         tabs = new ArrayList<String> (driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
         Thread.sleep(5000);
-        condition = driver.getCurrentUrl().equals("https://twitter.com/saucelabs");
+        condition = driver.getCurrentUrl().equals("https://x.com/saucelabs");
         EXCEL.report(condition,1, errMessage,
                 "Twitter is opened: " + condition  + "\n" + driver.getCurrentUrl());
         Assert.assertTrue(
