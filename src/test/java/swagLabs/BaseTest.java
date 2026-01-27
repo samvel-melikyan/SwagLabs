@@ -44,7 +44,14 @@ public class BaseTest{
 
     @AfterMethod
     public void tearDown() throws IOException {
-        if(driver != null) {
+        if(driver != null && testResult.getStatus() == ITestResult.FAILURE) {
+            System.out.println("> Screenshot has captured while failure.");
+            File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            FileUtils.copyFile(scrFile, new File("com/swaglabs/util/failureScreenshot" + "/photo" + new TakeScreenshot().failureNumber() + ".png"));
+
+            driver.quit();
+            setDriver(null);
+        } else if (driver != null) {
             driver.quit();
             setDriver(null);
         }

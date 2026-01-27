@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class ExcelReport {
     private String sheetName;
-    private String filePath = "src/test/manual/Swag Labs-Test Scenarios.xlsx";//"C:\\Users\\ASUS\\IdeaProjects\\swag_labs\\src\\test\\manual\\Swag Labs-Test Scenarios.xlsx";
+    private String filePath = "src/test/Test-Documents/Swag Labs-Test Scenarios.xlsx";
 
 
     public ExcelReport(String sheetName){
